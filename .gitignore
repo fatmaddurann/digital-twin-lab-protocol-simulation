@@ -1,0 +1,82 @@
+# ─── Python ────────────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.env
+
+# Distribution / packaging
+*.tar.gz
+*.whl
+MANIFEST
+
+# ─── Testing & Coverage ────────────────────────────────────────────────────
+.pytest_cache/
+pytest-cache-files-*/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+*.cover
+*.coveralls.json
+nosetests.xml
+test-results/
+
+# ─── Type checkers ─────────────────────────────────────────────────────────
+.mypy_cache/
+.pytype/
+.pyre/
+
+# ─── Editors ───────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ─── Blender ───────────────────────────────────────────────────────────────
+*.blend
+*.blend1
+*.blend2
+*.blend3
+# Blender temporary files
+*.crash.txt
+
+# ─── Jupyter ───────────────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ─── Logs ──────────────────────────────────────────────────────────────────
+*.log
+logs/
+
+# ─── OS ────────────────────────────────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+
+# ─── Secrets / config ──────────────────────────────────────────────────────
+.env
+.env.*
+secrets.yaml
+config.local.*

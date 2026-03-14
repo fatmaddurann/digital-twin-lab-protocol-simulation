@@ -1,0 +1,105 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+# ─────────────────────────────────────────────────────────────────────────────
+[project]
+name            = "digital-twin-lab"
+version         = "1.0.0"
+description     = "Convert laboratory protocols into interactive 3D Blender simulations"
+readme          = "README.md"
+license         = { file = "LICENSE" }
+requires-python = ">=3.10"
+
+authors = [
+    { name = "Fatma Duran", email = "fatmaddurann@gmail.com" }
+]
+
+keywords = [
+    "bioinformatics", "laboratory", "simulation", "blender", "3D",
+    "PCR", "NGS", "protocol", "digital-twin", "automation"
+]
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+]
+
+dependencies = [
+    "pydantic>=2.5.0",
+    "PyYAML>=6.0.1",
+    "typing-extensions>=4.9.0",
+    "python-dateutil>=2.8.2",
+]
+
+[project.optional-dependencies]
+api = [
+    "fastapi>=0.110.0",
+    "uvicorn[standard]>=0.27.0",
+]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "ruff>=0.4.0",
+]
+all = [
+    "digital-twin-lab[api,dev]",
+]
+
+[project.scripts]
+digital-twin-lab = "interface.cli:main"
+
+[project.urls]
+Homepage   = "https://github.com/fatmadurann/digital-twin-lab-protocol-simulation"
+Repository = "https://github.com/fatmadurann/digital-twin-lab-protocol-simulation"
+Issues     = "https://github.com/fatmadurann/digital-twin-lab-protocol-simulation/issues"
+
+# ─────────────────────────────────────────────────────────────────────────────
+[tool.setuptools.packages.find]
+where   = ["."]
+include = ["models*", "validation*", "simulation*", "interpreter*", "interface*"]
+exclude = ["tests*", "examples*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml"]
+
+# ─────────────────────────────────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths      = ["tests"]
+python_files   = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts        = "-v --tb=short"
+# Tell pytest where to find the project root (avoids sys.path issues in CI).
+# Coverage flags are intentionally NOT in addopts — the CI workflow passes them
+# explicitly so that local `pytest` runs without needing coverage tools.
+pythonpath     = ["."]
+
+# ─────────────────────────────────────────────────────────────────────────────
+[tool.coverage.run]
+source   = ["models", "validation", "simulation", "interpreter", "interface"]
+omit     = ["tests/*", "examples/*", "run_simulation.py"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = false
+
+# ─────────────────────────────────────────────────────────────────────────────
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select  = ["E", "F", "W", "I"]
+ignore  = [
+    "E501",   # line too long (relaxed for science code)
+    "F401",   # unused imports in __init__.py re-exports
+]

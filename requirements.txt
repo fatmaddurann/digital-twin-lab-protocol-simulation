@@ -1,0 +1,28 @@
+# ─────────────────────────────────────────────────────────────────
+# Digital Twin for Lab Protocol Simulation — Python Requirements
+# ─────────────────────────────────────────────────────────────────
+# Install with:  pip install -r requirements.txt
+
+# Core data validation
+pydantic>=2.5.0
+
+# API server (optional — only needed for FastAPI interface)
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+
+# Protocol file formats
+PyYAML>=6.0.1         # YAML protocol support
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Utilities
+python-dateutil>=2.8.2
+typing-extensions>=4.9.0
+
+# NOTE: Blender's bpy module is bundled with Blender and is NOT
+# installable via pip in the standard Python environment.
+# The simulation engine is designed to run inside Blender's
+# embedded Python interpreter.
+# Blender download: https://www.blender.org/download/

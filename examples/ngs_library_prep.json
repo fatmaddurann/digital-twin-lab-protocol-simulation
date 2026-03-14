@@ -1,0 +1,475 @@
+{
+  "protocol_id": "NGS-LIB-002",
+  "protocol_name": "NGS Library Preparation — Illumina DNA Nano Kit",
+  "version": "1.3.0",
+  "description": "Whole-genome sequencing library preparation using enzymatic fragmentation, end-repair, A-tailing, adapter ligation, and PCR amplification. Target insert size: 350 bp. Input DNA: 100 ng–1 µg.",
+  "author": {
+    "name": "Dr. Ahmed Hassan",
+    "email": "a.hassan@sequencingcore.edu",
+    "institution": "Sequencing Core Facility"
+  },
+  "created_at": "2026-03-15",
+  "tags": ["NGS", "library-prep", "Illumina", "WGS", "adapter-ligation"],
+
+  "reagents": [
+    {
+      "id": "input_dna",
+      "name": "Input Genomic DNA",
+      "volume_ul": 200.0,
+      "container": "stock_input_dna",
+      "color": { "r": 0.10, "g": 0.30, "b": 0.90, "a": 0.80 },
+      "concentration": "1 µg/µL",
+      "hazardous": false
+    },
+    {
+      "id": "eb_buffer",
+      "name": "Elution Buffer (EB)",
+      "volume_ul": 1000.0,
+      "container": "stock_eb_buffer",
+      "color": { "r": 0.85, "g": 0.90, "b": 1.00, "a": 0.40 },
+      "concentration": "10 mM Tris-HCl pH 8.5",
+      "hazardous": false
+    },
+    {
+      "id": "fragmentation_mix",
+      "name": "Enzymatic Fragmentation Mix",
+      "volume_ul": 200.0,
+      "container": "stock_fragmentation_mix",
+      "color": { "r": 0.95, "g": 0.60, "b": 0.10, "a": 0.80 },
+      "concentration": "1x",
+      "hazardous": false,
+      "notes": "Keep on ice. Contains proprietary enzyme cocktail."
+    },
+    {
+      "id": "end_repair_mix",
+      "name": "End Repair & A-Tailing Mix",
+      "volume_ul": 200.0,
+      "container": "stock_end_repair_mix",
+      "color": { "r": 0.20, "g": 0.75, "b": 0.50, "a": 0.80 },
+      "concentration": "1x",
+      "hazardous": false,
+      "notes": "Contains T4 PNK, T4 DNA Pol, Klenow, Taq for A-tailing."
+    },
+    {
+      "id": "adapter_mix",
+      "name": "Illumina TruSeq Adapters",
+      "volume_ul": 100.0,
+      "container": "stock_adapter_mix",
+      "color": { "r": 0.80, "g": 0.20, "b": 0.80, "a": 0.80 },
+      "concentration": "15 µM",
+      "hazardous": false,
+      "notes": "Unique dual-index adapters for multiplexed sequencing."
+    },
+    {
+      "id": "ligation_mix",
+      "name": "Ligation Mix (T4 DNA Ligase)",
+      "volume_ul": 200.0,
+      "container": "stock_ligation_mix",
+      "color": { "r": 0.95, "g": 0.85, "b": 0.10, "a": 0.80 },
+      "concentration": "1x",
+      "hazardous": false,
+      "viscosity": 2.5,
+      "notes": "High-viscosity — pipette slowly."
+    },
+    {
+      "id": "pcr_enrichment_mix",
+      "name": "PCR Enrichment Mix",
+      "volume_ul": 200.0,
+      "container": "stock_pcr_enrichment_mix",
+      "color": { "r": 0.40, "g": 0.75, "b": 0.90, "a": 0.80 },
+      "concentration": "2x",
+      "hazardous": false
+    },
+    {
+      "id": "index_primers",
+      "name": "Index PCR Primers (i5 + i7)",
+      "volume_ul": 100.0,
+      "container": "stock_index_primers",
+      "color": { "r": 0.30, "g": 0.90, "b": 0.30, "a": 0.80 },
+      "concentration": "10 µM each",
+      "hazardous": false
+    },
+    {
+      "id": "ampure_beads",
+      "name": "AMPure XP Beads",
+      "volume_ul": 500.0,
+      "container": "stock_ampure_beads",
+      "color": { "r": 0.30, "g": 0.15, "b": 0.05, "a": 0.95 },
+      "concentration": "N/A",
+      "hazardous": false,
+      "notes": "SPRI magnetic beads. Vortex to resuspend before use."
+    },
+    {
+      "id": "ethanol_80",
+      "name": "80% Ethanol (freshly prepared)",
+      "volume_ul": 2000.0,
+      "container": "stock_ethanol_80",
+      "color": { "r": 0.95, "g": 0.95, "b": 0.95, "a": 0.30 },
+      "concentration": "80%",
+      "hazardous": true,
+      "notes": "Prepare fresh. Use within 24 hours."
+    }
+  ],
+
+  "labware": [
+    {
+      "id": "stock_input_dna",
+      "name": "Input DNA Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [-0.22, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_eb_buffer",
+      "name": "EB Buffer Reservoir",
+      "labware_type": "reagent_reservoir",
+      "capacity_ul": 5000.0,
+      "current_volume": 1000.0,
+      "position": [-0.15, 0.15, 0.04],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_fragmentation_mix",
+      "name": "Fragmentation Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [-0.08, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_end_repair_mix",
+      "name": "End Repair Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [-0.02, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_adapter_mix",
+      "name": "Adapter Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 100.0,
+      "position": [0.04, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_ligation_mix",
+      "name": "Ligation Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [0.10, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_pcr_enrichment_mix",
+      "name": "PCR Enrichment Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [0.16, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_index_primers",
+      "name": "Index Primer Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 100.0,
+      "position": [-0.22, 0.05, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_ampure_beads",
+      "name": "AMPure XP Beads",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 500.0,
+      "position": [-0.16, 0.05, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_ethanol_80",
+      "name": "80% Ethanol Reservoir",
+      "labware_type": "reagent_reservoir",
+      "capacity_ul": 10000.0,
+      "current_volume": 2000.0,
+      "position": [-0.08, 0.05, 0.04],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "library_tube_a",
+      "name": "Library Prep Tube (Fragmentation)",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 200.0,
+      "current_volume": 0.0,
+      "position": [-0.08, -0.06, 0.02],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "library_tube_b",
+      "name": "Library Tube (End Repair)",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 200.0,
+      "current_volume": 0.0,
+      "position": [-0.04, -0.06, 0.02],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "library_tube_c",
+      "name": "Library Tube (Ligation)",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 200.0,
+      "current_volume": 0.0,
+      "position": [0.00, -0.06, 0.02],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "library_tube_d",
+      "name": "Final Library PCR Tube",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 200.0,
+      "current_volume": 0.0,
+      "position": [0.04, -0.06, 0.02],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "thermocycler_1",
+      "name": "Thermal Cycler",
+      "labware_type": "thermocycler",
+      "capacity_ul": 9999.0,
+      "current_volume": 0.0,
+      "position": [0.22, 0.0, 0.065],
+      "wells": 96,
+      "is_instrument": true
+    }
+  ],
+
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "pipette",
+      "description": "Dilute input DNA: add 1 µg input DNA to library tube A",
+      "source": "input_dna",
+      "destination": "library_tube_a",
+      "volume_ul": 1.0,
+      "tool": "P2"
+    },
+    {
+      "step_number": 2,
+      "action": "pipette",
+      "description": "Add EB buffer to bring DNA to 50 µL total volume",
+      "source": "eb_buffer",
+      "destination": "library_tube_a",
+      "volume_ul": 49.0,
+      "tool": "P200"
+    },
+    {
+      "step_number": 3,
+      "action": "pipette",
+      "description": "Add 7 µL enzymatic fragmentation mix to library tube A",
+      "source": "fragmentation_mix",
+      "destination": "library_tube_a",
+      "volume_ul": 7.0,
+      "tool": "P10"
+    },
+    {
+      "step_number": 4,
+      "action": "mix",
+      "description": "Mix thoroughly by pipetting up and down 5 times",
+      "source": "library_tube_a",
+      "destination": "library_tube_a",
+      "volume_ul": 50.0,
+      "tool": "P200",
+      "mix_cycles": 5
+    },
+    {
+      "step_number": 5,
+      "action": "place",
+      "description": "Place library tube A into thermocycler for enzymatic fragmentation",
+      "source": "library_tube_a",
+      "destination": "thermocycler_1"
+    },
+    {
+      "step_number": 6,
+      "action": "incubate",
+      "description": "Enzymatic fragmentation at 37 °C for 15 minutes",
+      "destination": "thermocycler_1",
+      "temperature": 37.0,
+      "duration_s": 900,
+      "notes": "Target fragment size: 350 bp."
+    },
+    {
+      "step_number": 7,
+      "action": "heat",
+      "description": "Inactivate enzymes: heat to 65 °C for 30 minutes",
+      "destination": "thermocycler_1",
+      "temperature": 65.0,
+      "duration_s": 1800
+    },
+    {
+      "step_number": 8,
+      "action": "pipette",
+      "description": "Transfer 57 µL fragmented DNA from tube A to tube B (end repair tube)",
+      "source": "library_tube_a",
+      "destination": "library_tube_b",
+      "volume_ul": 57.0,
+      "tool": "P200"
+    },
+    {
+      "step_number": 9,
+      "action": "pipette",
+      "description": "Add 40 µL end-repair and A-tailing mix to tube B",
+      "source": "end_repair_mix",
+      "destination": "library_tube_b",
+      "volume_ul": 40.0,
+      "tool": "P200"
+    },
+    {
+      "step_number": 10,
+      "action": "mix",
+      "description": "Mix by pipetting — 10 times",
+      "source": "library_tube_b",
+      "destination": "library_tube_b",
+      "volume_ul": 80.0,
+      "tool": "P200",
+      "mix_cycles": 10
+    },
+    {
+      "step_number": 11,
+      "action": "place",
+      "description": "Place tube B into thermocycler for end repair",
+      "source": "library_tube_b",
+      "destination": "thermocycler_1"
+    },
+    {
+      "step_number": 12,
+      "action": "incubate",
+      "description": "End repair and A-tailing: 30 °C for 30 min then 65 °C for 30 min",
+      "destination": "thermocycler_1",
+      "temperature": 30.0,
+      "duration_s": 3600
+    },
+    {
+      "step_number": 13,
+      "action": "pipette",
+      "description": "Transfer end-repaired DNA (97 µL) to tube C (ligation tube)",
+      "source": "library_tube_b",
+      "destination": "library_tube_c",
+      "volume_ul": 97.0,
+      "tool": "P200"
+    },
+    {
+      "step_number": 14,
+      "action": "pipette",
+      "description": "Add 2.5 µL Illumina adapter mix to tube C",
+      "source": "adapter_mix",
+      "destination": "library_tube_c",
+      "volume_ul": 2.5,
+      "tool": "P10"
+    },
+    {
+      "step_number": 15,
+      "action": "pipette",
+      "description": "Add 30 µL ligation mix to tube C",
+      "source": "ligation_mix",
+      "destination": "library_tube_c",
+      "volume_ul": 30.0,
+      "tool": "P200",
+      "notes": "Pipette slowly — ligation mix is viscous."
+    },
+    {
+      "step_number": 16,
+      "action": "mix",
+      "description": "Mix ligation reaction 10 times",
+      "source": "library_tube_c",
+      "destination": "library_tube_c",
+      "volume_ul": 100.0,
+      "tool": "P200",
+      "mix_cycles": 10
+    },
+    {
+      "step_number": 17,
+      "action": "incubate",
+      "description": "Adapter ligation at 20 °C for 15 minutes",
+      "destination": "library_tube_c",
+      "temperature": 20.0,
+      "duration_s": 900
+    },
+    {
+      "step_number": 18,
+      "action": "pipette",
+      "description": "Add 15 µL PCR enrichment mix to library tube D",
+      "source": "pcr_enrichment_mix",
+      "destination": "library_tube_d",
+      "volume_ul": 15.0,
+      "tool": "P20"
+    },
+    {
+      "step_number": 19,
+      "action": "pipette",
+      "description": "Add 5 µL index primers to library tube D",
+      "source": "index_primers",
+      "destination": "library_tube_d",
+      "volume_ul": 5.0,
+      "tool": "P10"
+    },
+    {
+      "step_number": 20,
+      "action": "mix",
+      "description": "Mix PCR enrichment reaction",
+      "source": "library_tube_d",
+      "destination": "library_tube_d",
+      "volume_ul": 20.0,
+      "tool": "P200",
+      "mix_cycles": 5
+    },
+    {
+      "step_number": 21,
+      "action": "place",
+      "description": "Place library tube D into thermocycler for PCR enrichment",
+      "source": "library_tube_d",
+      "destination": "thermocycler_1"
+    },
+    {
+      "step_number": 22,
+      "action": "thermocycle",
+      "description": "PCR enrichment: 8 cycles to amplify adapter-ligated library",
+      "destination": "thermocycler_1",
+      "thermocycle_program": [
+        { "name": "Initial Denaturation", "temperature": 98.0, "duration_s": 30,  "cycles": 1 },
+        { "name": "Denaturation",         "temperature": 98.0, "duration_s": 10,  "cycles": 8 },
+        { "name": "Annealing+Extension",  "temperature": 65.0, "duration_s": 75,  "cycles": 8 },
+        { "name": "Final Extension",      "temperature": 65.0, "duration_s": 300, "cycles": 1 },
+        { "name": "Hold",                 "temperature": 4.0,  "duration_s": 999, "cycles": 1 }
+      ],
+      "notes": "8 PCR cycles minimises duplicates in NGS data."
+    }
+  ],
+
+  "simulation_config": {
+    "fps": 24,
+    "frames_per_step": 96,
+    "render_engine": "BLENDER_EEVEE",
+    "highlight_errors": true
+  }
+}

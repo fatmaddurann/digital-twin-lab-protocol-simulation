@@ -1,0 +1,240 @@
+{
+  "protocol_id": "PCR-001",
+  "protocol_name": "Standard PCR Preparation Protocol",
+  "version": "2.1.0",
+  "description": "Standard PCR reaction setup for a 25 µL reaction volume. Includes template DNA, forward and reverse primers, and 2x PCR master mix. Suitable for high-fidelity amplification of fragments up to 3 kb.",
+  "author": {
+    "name": "Dr. Sarah Chen",
+    "email": "s.chen@genomicslab.org",
+    "institution": "GenomicsLab Institute"
+  },
+  "created_at": "2026-03-15",
+  "tags": ["PCR", "amplification", "DNA", "genomics"],
+
+  "reagents": [
+    {
+      "id": "dna_template",
+      "name": "Genomic DNA Template",
+      "volume_ul": 200.0,
+      "container": "stock_dna_template",
+      "color": { "r": 0.10, "g": 0.45, "b": 0.90, "a": 0.80 },
+      "concentration": "50 ng/µL",
+      "viscosity": 1.1,
+      "hazardous": false,
+      "notes": "Store on ice. Genomic DNA at 50 ng/µL."
+    },
+    {
+      "id": "forward_primer",
+      "name": "Forward Primer",
+      "volume_ul": 100.0,
+      "container": "stock_forward_primer",
+      "color": { "r": 0.20, "g": 0.80, "b": 0.20, "a": 0.80 },
+      "concentration": "10 µM",
+      "viscosity": 1.0,
+      "hazardous": false,
+      "notes": "10 µM working stock."
+    },
+    {
+      "id": "reverse_primer",
+      "name": "Reverse Primer",
+      "volume_ul": 100.0,
+      "container": "stock_reverse_primer",
+      "color": { "r": 0.10, "g": 0.60, "b": 0.30, "a": 0.80 },
+      "concentration": "10 µM",
+      "viscosity": 1.0,
+      "hazardous": false
+    },
+    {
+      "id": "pcr_master_mix",
+      "name": "2x PCR Master Mix",
+      "volume_ul": 500.0,
+      "container": "stock_pcr_master_mix",
+      "color": { "r": 0.85, "g": 0.40, "b": 0.10, "a": 0.80 },
+      "concentration": "2x",
+      "viscosity": 1.3,
+      "hazardous": false,
+      "notes": "Contains Taq polymerase, dNTPs, MgCl2, buffer. Store at -20°C."
+    },
+    {
+      "id": "nuclease_free_water",
+      "name": "Nuclease-Free Water",
+      "volume_ul": 1000.0,
+      "container": "stock_nuclease_free_water",
+      "color": { "r": 0.80, "g": 0.90, "b": 1.00, "a": 0.40 },
+      "concentration": "N/A",
+      "viscosity": 1.0,
+      "hazardous": false
+    }
+  ],
+
+  "labware": [
+    {
+      "id": "stock_dna_template",
+      "name": "DNA Template Stock (1.5 mL)",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 200.0,
+      "position": [-0.18, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.10, "g": 0.45, "b": 0.90, "a": 0.40 }
+    },
+    {
+      "id": "stock_forward_primer",
+      "name": "Forward Primer Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 100.0,
+      "position": [-0.13, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.20, "g": 0.80, "b": 0.20, "a": 0.40 }
+    },
+    {
+      "id": "stock_reverse_primer",
+      "name": "Reverse Primer Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 100.0,
+      "position": [-0.08, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.10, "g": 0.60, "b": 0.30, "a": 0.40 }
+    },
+    {
+      "id": "stock_pcr_master_mix",
+      "name": "PCR Master Mix Stock",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 500.0,
+      "position": [-0.03, 0.12, 0.025],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.85, "g": 0.40, "b": 0.10, "a": 0.40 }
+    },
+    {
+      "id": "stock_nuclease_free_water",
+      "name": "Nuclease-Free Water",
+      "labware_type": "reagent_reservoir",
+      "capacity_ul": 50000.0,
+      "current_volume": 1000.0,
+      "position": [0.05, 0.15, 0.04],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.80, "g": 0.90, "b": 1.00, "a": 0.40 }
+    },
+    {
+      "id": "pcr_tube_1",
+      "name": "PCR Reaction Tube",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 200.0,
+      "current_volume": 0.0,
+      "position": [-0.05, -0.05, 0.02],
+      "wells": 1,
+      "is_instrument": false,
+      "color": { "r": 0.90, "g": 0.95, "b": 1.00, "a": 0.30 }
+    },
+    {
+      "id": "thermocycler_1",
+      "name": "Thermal Cycler",
+      "labware_type": "thermocycler",
+      "capacity_ul": 9999.0,
+      "current_volume": 0.0,
+      "position": [0.22, 0.0, 0.065],
+      "wells": 96,
+      "is_instrument": true,
+      "color": { "r": 0.12, "g": 0.12, "b": 0.14, "a": 1.0 }
+    }
+  ],
+
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "pipette",
+      "description": "Add 12.5 µL of 2x PCR Master Mix to PCR reaction tube",
+      "source": "pcr_master_mix",
+      "destination": "pcr_tube_1",
+      "volume_ul": 12.5,
+      "tool": "P20",
+      "notes": "Master mix is added first to reduce polymerase contact with tube wall."
+    },
+    {
+      "step_number": 2,
+      "action": "pipette",
+      "description": "Add 1.0 µL forward primer (10 µM) to PCR tube",
+      "source": "forward_primer",
+      "destination": "pcr_tube_1",
+      "volume_ul": 1.0,
+      "tool": "P2"
+    },
+    {
+      "step_number": 3,
+      "action": "pipette",
+      "description": "Add 1.0 µL reverse primer (10 µM) to PCR tube",
+      "source": "reverse_primer",
+      "destination": "pcr_tube_1",
+      "volume_ul": 1.0,
+      "tool": "P2"
+    },
+    {
+      "step_number": 4,
+      "action": "pipette",
+      "description": "Add 1.0 µL DNA template (50 ng/µL) to PCR tube",
+      "source": "dna_template",
+      "destination": "pcr_tube_1",
+      "volume_ul": 1.0,
+      "tool": "P2",
+      "notes": "Keep DNA template on ice until use."
+    },
+    {
+      "step_number": 5,
+      "action": "pipette",
+      "description": "Add 9.5 µL nuclease-free water to bring reaction to 25 µL",
+      "source": "nuclease_free_water",
+      "destination": "pcr_tube_1",
+      "volume_ul": 9.5,
+      "tool": "P10"
+    },
+    {
+      "step_number": 6,
+      "action": "mix",
+      "description": "Mix reaction by pipetting up and down 5 times",
+      "source": "pcr_tube_1",
+      "destination": "pcr_tube_1",
+      "volume_ul": 20.0,
+      "tool": "P20",
+      "mix_cycles": 5,
+      "notes": "Do not vortex — this can damage polymerase."
+    },
+    {
+      "step_number": 7,
+      "action": "place",
+      "description": "Place PCR tube into thermocycler",
+      "source": "pcr_tube_1",
+      "destination": "thermocycler_1"
+    },
+    {
+      "step_number": 8,
+      "action": "thermocycle",
+      "description": "Run standard PCR program (35 cycles)",
+      "destination": "thermocycler_1",
+      "thermocycle_program": [
+        { "name": "Initial Denaturation", "temperature": 95.0, "duration_s": 180, "cycles": 1 },
+        { "name": "Denaturation",         "temperature": 95.0, "duration_s": 30,  "cycles": 35 },
+        { "name": "Annealing",            "temperature": 58.0, "duration_s": 30,  "cycles": 35 },
+        { "name": "Extension",            "temperature": 72.0, "duration_s": 60,  "cycles": 35 },
+        { "name": "Final Extension",      "temperature": 72.0, "duration_s": 300, "cycles": 1 },
+        { "name": "Hold",                 "temperature": 4.0,  "duration_s": 999, "cycles": 1 }
+      ],
+      "notes": "Total cycle time approximately 2 hours."
+    }
+  ],
+
+  "simulation_config": {
+    "fps": 24,
+    "frames_per_step": 96,
+    "render_engine": "BLENDER_EEVEE",
+    "camera_angle": "top_front_45",
+    "highlight_errors": true
+  }
+}

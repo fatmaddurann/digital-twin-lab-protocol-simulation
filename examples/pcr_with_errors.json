@@ -1,0 +1,125 @@
+{
+  "protocol_id": "PCR-ERR-001",
+  "protocol_name": "PCR Preparation — Intentional Error Demo",
+  "version": "1.0.0",
+  "description": "This protocol contains intentional logical errors to demonstrate the validation engine and error visualisation. Errors include: pipetting from a non-existent reagent, exceeding tube capacity, wrong pipette for volume, and missing instrument.",
+  "author": {
+    "name": "Error Demo",
+    "institution": "DigitalTwin Lab"
+  },
+  "created_at": "2026-03-15",
+  "tags": ["demo", "error-detection", "validation"],
+
+  "reagents": [
+    {
+      "id": "dna_template",
+      "name": "DNA Template",
+      "volume_ul": 50.0,
+      "container": "stock_dna",
+      "color": { "r": 0.10, "g": 0.45, "b": 0.90, "a": 0.80 }
+    },
+    {
+      "id": "pcr_master_mix",
+      "name": "PCR Master Mix (2x)",
+      "volume_ul": 100.0,
+      "container": "stock_master_mix",
+      "color": { "r": 0.85, "g": 0.40, "b": 0.10, "a": 0.80 }
+    }
+  ],
+
+  "labware": [
+    {
+      "id": "stock_dna",
+      "name": "DNA Stock Tube",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 50.0,
+      "position": [-0.10, 0.10, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "stock_master_mix",
+      "name": "Master Mix Stock Tube",
+      "labware_type": "microcentrifuge_tube",
+      "capacity_ul": 1500.0,
+      "current_volume": 100.0,
+      "position": [-0.05, 0.10, 0.025],
+      "wells": 1,
+      "is_instrument": false
+    },
+    {
+      "id": "pcr_tube_1",
+      "name": "PCR Reaction Tube (max 25 µL)",
+      "labware_type": "pcr_tube",
+      "capacity_ul": 25.0,
+      "current_volume": 0.0,
+      "position": [-0.02, -0.05, 0.02],
+      "wells": 1,
+      "is_instrument": false
+    }
+  ],
+
+  "steps": [
+    {
+      "step_number": 1,
+      "action": "pipette",
+      "description": "Add 5 µL DNA template to PCR tube",
+      "source": "dna_template",
+      "destination": "pcr_tube_1",
+      "volume_ul": 5.0,
+      "tool": "P10"
+    },
+    {
+      "step_number": 2,
+      "action": "pipette",
+      "description": "ERROR: Pipette from 'primer_mix' which does not exist in the protocol",
+      "source": "primer_mix",
+      "destination": "pcr_tube_1",
+      "volume_ul": 2.0,
+      "tool": "P10",
+      "notes": "⚠ Intentional error: reagent 'primer_mix' is not declared."
+    },
+    {
+      "step_number": 3,
+      "action": "pipette",
+      "description": "Add PCR master mix to tube",
+      "source": "pcr_master_mix",
+      "destination": "pcr_tube_1",
+      "volume_ul": 12.5,
+      "tool": "P20"
+    },
+    {
+      "step_number": 4,
+      "action": "pipette",
+      "description": "ERROR: Add 300 µL water — this overflows the 25 µL PCR tube",
+      "source": "dna_template",
+      "destination": "pcr_tube_1",
+      "volume_ul": 300.0,
+      "tool": "P1000",
+      "notes": "⚠ Intentional error: P1000 is wrong pipette for small volume; tube will overflow."
+    },
+    {
+      "step_number": 5,
+      "action": "mix",
+      "description": "Mix the reaction",
+      "source": "pcr_tube_1",
+      "destination": "pcr_tube_1",
+      "volume_ul": 20.0,
+      "tool": "P20",
+      "mix_cycles": 5
+    },
+    {
+      "step_number": 6,
+      "action": "thermocycle",
+      "description": "ERROR: Run PCR — but no thermocycler is declared in labware",
+      "destination": "pcr_tube_1",
+      "thermocycle_program": [
+        { "name": "Denaturation", "temperature": 95.0, "duration_s": 30, "cycles": 35 },
+        { "name": "Annealing",    "temperature": 58.0, "duration_s": 30, "cycles": 35 },
+        { "name": "Extension",    "temperature": 72.0, "duration_s": 60, "cycles": 35 }
+      ],
+      "notes": "⚠ Intentional error: no thermocycler in labware list."
+    }
+  ]
+}
