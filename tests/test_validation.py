@@ -20,7 +20,6 @@ _ROOT = Path(__file__).resolve().parent.parent
 from models.protocol_models import (
     ActionType,
     ColorRGBA,
-    ErrorSeverity,
     LabwareModel,
     LabwareType,
     PipetteType,
@@ -566,7 +565,7 @@ class TestNaturalLanguageParser:
         text = "Add 5 µL of primer to pcr_tube"
         parser = NaturalLanguageParser()
         proto  = parser.parse(text)
-        labware_ids = [l.id for l in proto.labware]
+        labware_ids = [lw.id for lw in proto.labware]
         assert "pcr_tube" in labware_ids
 
     def test_parse_incubate_step(self):

@@ -18,7 +18,6 @@ gracefully and all public methods become no-ops.
 
 from __future__ import annotations
 
-import math
 import logging
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional, Tuple

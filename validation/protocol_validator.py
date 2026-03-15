@@ -23,7 +23,6 @@ Rules implemented
 
 from __future__ import annotations
 
-import copy
 import logging
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
@@ -93,8 +92,8 @@ class ValidationContext:
 
     def __post_init__(self) -> None:
         self.reagent_index  = {r.id: r for r in self.protocol.reagents}
-        self.labware_index  = {l.id: l for l in self.protocol.labware}
-        self.volume_tracker = {l.id: l.current_volume for l in self.protocol.labware}
+        self.labware_index  = {lw.id: lw for lw in self.protocol.labware}
+        self.volume_tracker = {lw.id: lw.current_volume for lw in self.protocol.labware}
         # Source containers start with their reagent volume available
         for reagent in self.protocol.reagents:
             if reagent.container in self.volume_tracker:
@@ -186,8 +185,8 @@ class R03_PipetteRange(ValidationRule):
                 step, ErrorSeverity.ERROR,
                 f"Volume {step.volume_ul} µL is out of range for {step.tool.value} "
                 f"({lo}–{hi} µL).",
-                suggestion=f"Use a different pipette for this volume, e.g. "
-                           f"P200 for 20–200 µL, P1000 for 100–1000 µL."
+                suggestion="Use a different pipette for this volume, e.g. "
+                           "P200 for 20–200 µL, P1000 for 100–1000 µL."
             ))
         return issues
 

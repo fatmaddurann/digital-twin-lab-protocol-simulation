@@ -463,10 +463,10 @@ class NaturalLanguageParser:
         protocol_id:   Optional[str] = None,
     ) -> ProtocolModel:
         """Parse *text* into a ProtocolModel."""
-        lines = [l.strip() for l in text.strip().splitlines() if l.strip()]
+        lines = [line.strip() for line in text.strip().splitlines() if line.strip()]
         # Remove leading numbers / bullets ("1.", "1)", "•", "-")
-        lines = [re.sub(r"^[\d]+[.)]\s*|^[•\-\*]\s*", "", l) for l in lines]
-        lines = [l for l in lines if l]
+        lines = [re.sub(r"^[\d]+[.)]\s*|^[•\-\*]\s*", "", line) for line in lines]
+        lines = [line for line in lines if line]
 
         steps:     List[ProtocolStepModel] = []
         reagents:  Dict[str, ReagentModel] = {}

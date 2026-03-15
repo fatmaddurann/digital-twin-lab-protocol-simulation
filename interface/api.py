@@ -29,7 +29,7 @@ import json
 import logging
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, Optional
 
 # Ensure project root is importable
 _ROOT = Path(__file__).resolve().parent.parent
@@ -39,7 +39,7 @@ if str(_ROOT) not in sys.path:
 logger = logging.getLogger(__name__)
 
 try:
-    from fastapi import FastAPI, HTTPException, Body
+    from fastapi import FastAPI, HTTPException
     from fastapi.middleware.cors import CORSMiddleware
     from pydantic import BaseModel as _BaseModel
     FASTAPI_AVAILABLE = True

@@ -58,7 +58,7 @@ logger = logging.getLogger("run_simulation")
 
 # ── Try bpy (only available inside Blender) ────────────────────────────────
 try:
-    import bpy  # type: ignore
+    import bpy as _bpy  # noqa: F401  — presence check only; used via INSIDE_BLENDER flag
     INSIDE_BLENDER = True
 except ImportError:
     INSIDE_BLENDER = False

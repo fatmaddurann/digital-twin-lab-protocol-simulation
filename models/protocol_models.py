@@ -298,7 +298,7 @@ class ProtocolModel(BaseModel):
     def validate_unique_ids(self) -> "ProtocolModel":
         """Enforce unique IDs across reagents and labware."""
         reagent_ids = [r.id for r in self.reagents]
-        labware_ids = [l.id for l in self.labware]
+        labware_ids = [lw.id for lw in self.labware]
 
         if len(reagent_ids) != len(set(reagent_ids)):
             seen, dupes = set(), []
@@ -322,7 +322,7 @@ class ProtocolModel(BaseModel):
         return next((r for r in self.reagents if r.id == reagent_id), None)
 
     def get_labware(self, labware_id: str) -> Optional[LabwareModel]:
-        return next((l for l in self.labware if l.id == labware_id), None)
+        return next((lw for lw in self.labware if lw.id == labware_id), None)
 
 
 # ─────────────────────────────────────────────
